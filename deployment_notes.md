@@ -1,8 +1,8 @@
 # Deployment Notes
 
-## Objective
+## Project Objective
 
-Deploy a production-style Flask application on AWS EC2 using Nginx, Gunicorn and Systemd.
+Deploy and operate a production-style Flask application on AWS using industry-standard deployment and monitoring practices.
 
 ---
 
@@ -17,8 +17,8 @@ Completed:
 
 Learnings:
 
-- Flask Project Structure
 - Python Virtual Environments
+- Flask Application Structure
 - Dependency Management
 
 ---
@@ -29,12 +29,12 @@ Completed:
 
 - Initialized Git Repository
 - Created GitHub Repository
-- Pushed Project to GitHub
+- Pushed Code to GitHub
 
 Learnings:
 
 - Git Workflow
-- Repository Management
+- Source Control Management
 - Documentation Practices
 
 ---
@@ -43,16 +43,16 @@ Learnings:
 
 Completed:
 
-- Launched EC2 Instance
-- Connected through SSH
-- Installed Python and Git
+- Launched AWS EC2 Instance
+- Configured Security Groups
+- Connected Through SSH
+- Installed Required Packages
 - Cloned Repository
-- Deployed Flask Application
 
 Learnings:
 
 - EC2 Administration
-- Security Groups
+- SSH Access
 - Linux Package Management
 
 ---
@@ -62,14 +62,14 @@ Learnings:
 Completed:
 
 - Configured Gunicorn
-- Tested Multiple Workers
-- Verified Gunicorn Processes
+- Tested Worker Processes
+- Verified Application Hosting
 
 Learnings:
 
 - WSGI Servers
-- Worker Processes
 - Process Management
+- Production Application Hosting
 
 ---
 
@@ -93,15 +93,15 @@ Learnings:
 
 Completed:
 
-- Created Systemd Service
+- Created systemd Service
 - Enabled Automatic Startup
 - Tested Reboot Persistence
 
 Learnings:
 
 - Service Management
-- Systemd Configuration
-- Production Application Hosting
+- systemd Configuration
+- Linux Service Operations
 
 ---
 
@@ -109,32 +109,98 @@ Learnings:
 
 Completed:
 
-- Service Monitoring
-- Log Analysis
-- Failure Testing
+- Monitored Services
+- Inspected Logs
+- Tested Failure Recovery
 
 Learnings:
 
 - journalctl
-- Nginx Access Logs
-- Nginx Error Logs
-- Application Troubleshooting
+- Access Logs
+- Error Logs
+- Troubleshooting Workflow
+
+---
+
+# Day 8
+
+Completed:
+
+- Created CloudWatch Alarm
+- Configured SNS Notification
+- Installed CloudWatch Agent
+- Configured Metrics Collection
+
+Learnings:
+
+- Infrastructure Monitoring
+- Alerting
+- Operational Visibility
+
+---
+
+# Day 9
+
+Completed:
+
+- Created CloudWatch Dashboard
+- Added CPU Monitoring
+- Added Memory Monitoring
+- Added Disk Monitoring
+- Added Network Monitoring
+
+Learnings:
+
+- Dashboard Design
+- Metrics Visualization
+- Monitoring Best Practices
+
+---
+
+# Day 10
+
+Completed:
+
+- Created Amazon S3 Bucket
+- Configured IAM Role Permissions
+- Integrated boto3
+- Implemented File Upload Endpoint
+- Verified File Uploads
+
+Learnings:
+
+- S3 Integration
+- IAM Role Authentication
+- Cloud-Native Application Design
 
 ---
 
 # Final Architecture
 
 ```text
+User
+ ↓
 Internet
-   │
-   ▼
+ ↓
 Nginx
-   │
-   ▼
+ ↓
 Gunicorn
-   │
-   ▼
+ ↓
 Flask
+ ↓
+Amazon S3
+
+Monitoring:
+
+EC2
+ ↓
+CloudWatch Agent
+ ↓
+CloudWatch Dashboard
+ ↓
+CloudWatch Alarm
+ ↓
+SNS Notification
 ```
 
 ---
@@ -144,33 +210,53 @@ Flask
 ## Service Status
 
 ```bash
-systemctl status flaskapp
-```
-
-## View Logs
-
-```bash
-journalctl -u flaskapp
+sudo systemctl status flaskapp
 ```
 
 ## Restart Service
 
 ```bash
-systemctl restart flaskapp
+sudo systemctl restart flaskapp
 ```
 
-## Nginx Logs
+## Service Logs
 
 ```bash
-tail -f /var/log/nginx/access.log
+sudo journalctl -u flaskapp
+```
+
+## Follow Logs
+
+```bash
+sudo journalctl -u flaskapp -f
+```
+
+## Nginx Access Logs
+
+```bash
+sudo tail -f /var/log/nginx/access.log
+```
+
+## Nginx Error Logs
+
+```bash
+sudo tail -f /var/log/nginx/error.log
 ```
 
 ---
 
-# Lessons Learned
+# Major Lessons Learned
 
-1. A deployment is more than just running code.
-2. Production applications require process management.
-3. Monitoring and logs are essential.
-4. Reverse proxies improve security and scalability.
-5. Automation is critical for reliability.
+1. Production deployments require more than application code.
+2. Reverse proxies improve security and flexibility.
+3. Service management is essential for reliability.
+4. Monitoring and alerting are critical for operations.
+5. IAM Roles are safer than storing credentials.
+6. Cloud services can be integrated directly into applications.
+7. Observability is a core cloud engineering skill.
+
+---
+
+# Project Outcome
+
+Successfully designed, deployed, monitored and extended a production-style Flask application on AWS using cloud-native services and Linux operational practices.
