@@ -15,13 +15,12 @@ jobs:
 
       - name: Setup python
         uses: actions/setup-python@v5
-
-      - name: Python version
-        run: python --version
-        
         with:
           python-version: "3.12"
           cache: pip
+
+      - name: Python version
+        run: python --version
 
       - name: Python version
         run: python --version
