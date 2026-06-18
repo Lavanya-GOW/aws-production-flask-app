@@ -15,11 +15,10 @@ jobs:
 
       - name: Setup python
         uses: actions/setup-python@v5
-<<<<<<< HEAD
 
       - name: Python version
         run: python --version
-=======
+        
         with:
           python-version: "3.12"
           cache: pip
@@ -57,4 +56,3 @@ jobs:
             sed -i "s/^IMAGE_TAG=.*/IMAGE_TAG=${{ github.sha }}/" .env
             docker compose pull
             docker compose up -d
->>>>>>> d184149805c5b27ce7dc82d21f862aee1420366b
